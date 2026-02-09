@@ -2,10 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-
-<!-- IMPORTANT for phones -->
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Maria 💘</title>
 
 <style>
@@ -13,7 +10,7 @@ body {
   margin: 0;
   height: 100vh;
   background: linear-gradient(135deg, #ff758c, #ff7eb3);
-  font-family: -apple-system, BlinkMacSystemFont, 'Arial', sans-serif;
+  font-family: Arial, sans-serif;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -31,15 +28,8 @@ body {
   z-index: 2;
 }
 
-h1 {
-  color: #ff4d6d;
-  font-size: 26px;
-}
-
-p {
-  font-size: 17px;
-  margin: 18px 0;
-}
+h1 { color: #ff4d6d; }
+p { font-size: 17px; }
 
 button {
   font-size: 18px;
@@ -48,7 +38,6 @@ button {
   border: none;
   margin: 12px;
   cursor: pointer;
-  touch-action: manipulation;
 }
 
 .si {
@@ -64,79 +53,57 @@ button {
 
 .heart {
   position: absolute;
-  color: #ff4d6d;
   animation: float 6s linear infinite;
   opacity: 0.8;
-  pointer-events: none;
 }
 
 @keyframes float {
   from { transform: translateY(100vh); }
   to { transform: translateY(-10vh); }
 }
-
-.name-hearts {
-  position: absolute;
-  top: 8%;
-  font-size: 24px;
-  letter-spacing: 8px;
-}
 </style>
 </head>
 
 <body>
 
-<div class="name-hearts">❤️ M A R I A ❤️</div>
-
 <div class="card" id="card">
   <h1>💘 Maria 💘</h1>
   <p>
-    From the moment you walked into my life,<br>
-    you made everything better 🥹❤️<br><br>
-    Will you be my Valentine?
+    Will you be my Valentine? 🥹❤️
   </p>
 
   <button class="no" id="noBtn">NOOO 🙄</button>
   <button class="si" onclick="answer()">SIIIII 🥰</button>
 </div>
 
-<audio id="music" loop>
-  <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mpeg">
-</audio>
-
 <script>
 const noBtn = document.getElementById("noBtn");
 
-// Move button on touch OR hover
-function moveNoButton() {
-  const x = Math.random() * 220 - 110;
-  const y = Math.random() * 220 - 110;
+function moveNo() {
+  const x = Math.random() * 200 - 100;
+  const y = Math.random() * 200 - 100;
   noBtn.style.transform = `translate(${x}px, ${y}px)`;
 }
 
-noBtn.addEventListener("touchstart", moveNoButton);
-noBtn.addEventListener("mouseover", moveNoButton);
+noBtn.addEventListener("mouseover", moveNo);
+noBtn.addEventListener("touchstart", moveNo);
 
 function answer() {
-  document.getElementById('music').play();
-  document.getElementById('card').innerHTML = `
-    <h1>💖 SHE SAID YES 💖</h1>
-    <p>
-      Maria, you just made my heart explode 😭❤️<br><br>
-      I can’t wait to make this Valentine’s Day unforgettable.
-    </p>
+  document.getElementById("card").innerHTML = `
+    <h1>💖 YAYYYYY 💖</h1>
+    <p>Best Valentine ever 😭❤️</p>
   `;
 }
 
-// Floating hearts
-for (let i = 0; i < 28; i++) {
-  const heart = document.createElement('div');
-  heart.className = 'heart';
-  heart.innerHTML = '❤️';
-  heart.style.left = Math.random() * 100 + 'vw';
-  heart.style.fontSize = (Math.random() * 18 + 14) + 'px';
-  heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
-  document.body.appendChild(heart);
+// hearts
+for (let i = 0; i < 25; i++) {
+  const h = document.createElement("div");
+  h.className = "heart";
+  h.innerHTML = "❤️";
+  h.style.left = Math.random() * 100 + "vw";
+  h.style.fontSize = Math.random() * 20 + 15 + "px";
+  h.style.animationDuration = Math.random() * 3 + 4 + "s";
+  document.body.appendChild(h);
 }
 </script>
 

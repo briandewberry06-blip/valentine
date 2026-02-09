@@ -29,7 +29,6 @@
 
     h1 {
       color: #e60073;
-      margin-bottom: 10px;
     }
 
     h2 {
@@ -56,29 +55,36 @@
       cursor: not-allowed;
     }
 
-    .floating {
+    .petal {
       position: absolute;
-      font-weight: bold;
-      opacity: 0.75;
-      animation: floatUp 7s linear infinite;
-      white-space: nowrap;
-      color: #ff1a75;
+      font-size: 26px;
+      animation: fall 8s linear infinite;
+      opacity: 0.8;
     }
 
-    @keyframes floatUp {
-      from { transform: translateY(110vh); }
-      to { transform: translateY(-10vh); }
+    @keyframes fall {
+      from {
+        transform: translateY(-10vh) rotate(0deg);
+      }
+      to {
+        transform: translateY(110vh) rotate(360deg);
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- 🎶 Background Music -->
-  <audio id="music" loop>
+  <!-- 🎶 Soft intro music -->
+  <audio id="bgMusic" loop>
     <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_9e8b6b8b9f.mp3" type="audio/mpeg">
   </audio>
 
-  <div class="card" onclick="startMusic()">
+  <!-- 🎵 YOUR song plays after YES -->
+  <audio id="loveSong" loop>
+    <source src="https://drive.google.com/uc?export=download&id=1hHMACJjUxzWXwunMJVD7D1RK7TIhS5GJ" type="audio/mpeg">
+  </audio>
+
+  <div class="card" onclick="startBgMusic()">
     <h1>To: Maria ❤️‍🩹</h1>
     <h2>Will you be my Valentine?</h2>
 
@@ -88,42 +94,45 @@
   </div>
 
   <script>
-    let musicStarted = false;
+    let bgStarted = false;
 
-    function startMusic() {
-      if (!musicStarted) {
-        document.getElementById("music").play();
-        musicStarted = true;
+    function startBgMusic() {
+      if (!bgStarted) {
+        document.getElementById("bgMusic").play();
+        bgStarted = true;
       }
     }
 
     function yesClick() {
+      document.getElementById("bgMusic").pause();
+      document.getElementById("loveSong").play();
+
       document.body.innerHTML = `
-        <div style="text-align:center;color:white;">
-          <h1>YAYYYYY 💘</h1>
-          <h2>I love you Maria 🥰</h2>
+        <div style="text-align:center;color:white;padding:30px;max-width:90%;">
+          <h1>Ofc you hit yes 🌝</h1>
+          <p style="font-size:20px;line-height:1.5;">
+            I love you so much baby and I’m thankful that you’ll be my Valentine.
+            <br><br>
+            Te amo muchísimo mi reina ❤️‍🩹
+          </p>
+          <p style="font-size:14px;opacity:0.85;">
+            (I created this site by hand for you 😘)
+          </p>
         </div>
       `;
-      startMusic();
     }
 
-    // 💕 Floating hearts + words
-    const floatItems = [
-      "❤️", "💖", "💕", "💘", "💗",
-      "Mi todo 😘",
-      "Baby mama 😍"
-    ];
-
+    // 🌹 Falling rose petals
     setInterval(() => {
-      const float = document.createElement("div");
-      float.className = "floating";
-      float.innerHTML = floatItems[Math.floor(Math.random() * floatItems.length)];
-      float.style.left = Math.random() * 100 + "vw";
-      float.style.fontSize = (18 + Math.random() * 28) + "px";
-      document.body.appendChild(float);
+      const petal = document.createElement("div");
+      petal.className = "petal";
+      petal.innerHTML = "🌹";
+      petal.style.left = Math.random() * 100 + "vw";
+      petal.style.fontSize = (20 + Math.random() * 20) + "px";
+      document.body.appendChild(petal);
 
-      setTimeout(() => float.remove(), 7000);
-    }, 280);
+      setTimeout(() => petal.remove(), 8000);
+    }, 300);
   </script>
 
 </body>
